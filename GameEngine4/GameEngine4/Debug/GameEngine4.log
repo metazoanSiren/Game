@@ -1,0 +1,3 @@
+﻿  Window.cpp
+c:\users\nate4\source\repos\gameengine4\gameengine4\engine\core\window.cpp(47): warning C4715: 'Window::OnCreate': not all control paths return a value
+  GameEngine4.vcxproj -> C:\Users\nate4\source\repos\GameEngine4\Debug\GameEngine4.exe
