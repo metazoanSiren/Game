@@ -9,6 +9,7 @@
 #include "../Rendering/3D/GameObject.h"
 #include "../Graphics/ShaderHandler.h"
 #include "../Camera/Camera.h"
+#include "../Graphics/TextureHandler.h"
 
 
 class CoreEngine

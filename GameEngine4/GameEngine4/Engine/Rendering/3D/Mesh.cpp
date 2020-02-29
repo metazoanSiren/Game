@@ -3,13 +3,13 @@
 
 
 Mesh::Mesh(std::vector<Vertex>* vertexList_,
-	GLuint shaderProgram_) : vertexList(std::vector<Vertex>()),
+	GLuint shaderProgram_, GLuint textureID_) : vertexList(std::vector<Vertex>()),
 VAO(0),VBO(0), modelLoc (0), viewLoc(0), projLoc(0){
 	vertexList.reserve(100);
 	vertexList = *vertexList_;
 	shaderProgram = shaderProgram_;
 	GenerateBuffers();
-
+	textureID = textureID_;
 }
 
 Mesh::~Mesh(){
@@ -18,14 +18,21 @@ Mesh::~Mesh(){
 }
 
 void Mesh::Render(Camera* camera_,glm::mat4 transform_){
-	glBindVertexArray(VAO);
+	glUniform1i(textureLoc, 0);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, textureID);
+
+	
 
 	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(transform_));
 	glUniformMatrix4fv(viewLoc, 1, GL_FALSE,glm::value_ptr(camera_->GetView()));
 	glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(camera_->GetPersp()));
 
+	glBindVertexArray(VAO);
+
 	glDrawArrays(GL_TRIANGLES, 0, vertexList.size());
 	glBindVertexArray(0);
+	glBindTexture(GL_TEXTURE_2D, 0);
 
 }
 
@@ -57,4 +64,5 @@ void Mesh::GenerateBuffers(){
 	modelLoc = glGetUniformLocation(shaderProgram, "model");
 	viewLoc = glGetUniformLocation(shaderProgram, "view");
 	projLoc = glGetUniformLocation(shaderProgram, "proj");
+	textureLoc = glGetUniformLocation(shaderProgram, "inputTexture");
 }

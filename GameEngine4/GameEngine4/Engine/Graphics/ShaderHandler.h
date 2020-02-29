@@ -2,7 +2,7 @@
 #define SHANDERHANDLER_H
 
 #include <sstream>
-#include<map>
+#include <map>
 #include <vector>
 #include <memory>
 #include <glew.h>

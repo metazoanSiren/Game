@@ -21,7 +21,8 @@ bool Window::OnCreate(std::string name_, int width_, int height_) {
 
 	SetPreAttributes();
 
-	window = SDL_CreateWindow(name_.c_str(),SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,width, height, SDL_WINDOW_OPENGL);
+	window = SDL_CreateWindow(name_.c_str(),
+		SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,width, height, SDL_WINDOW_OPENGL);
 		
 	if (!window) {
 		Debug::FatalError(" Failed to Create Window ", " Window.cpp   ", __LINE__);
